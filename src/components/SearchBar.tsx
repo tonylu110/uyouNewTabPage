@@ -8,7 +8,7 @@ export default class SearchBar extends Component<any, any> {
   constructor(props: Object) {
     super(props)
     let screenWidth: number = window.innerWidth
-    var searchBarWidth: string = ''
+    let searchBarWidth: string = ''
     if (screenWidth < 768) {
       searchBarWidth = '324px'
     }

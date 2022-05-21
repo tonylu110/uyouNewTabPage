@@ -8,11 +8,14 @@ export default class Background extends Component<any, any> {
     let screenHeight: number = document.documentElement.clientHeight
     let screenWidth: number = window.innerWidth
     let backgroundImage: string = 'url(https://iw233.cn/api.php?sort=pc)'
+    let backgroundHeight: string = ''
     if (screenWidth < 768) {
       backgroundImage = 'url(https://iw233.cn/api.php?sort=mp)'
+      backgroundHeight = screenHeight + 'px'
     }
     this.state = {
-      background: backgroundImage
+      background: backgroundImage,
+      backgroundHeight: backgroundHeight
     }
   }
   render() {
@@ -20,7 +23,8 @@ export default class Background extends Component<any, any> {
       <div 
         className='background' 
         style={{
-          backgroundImage: this.state.background
+          backgroundImage: this.state.background,
+          height: this.state.backgroundHeight
         }}
       >
         <MainArea />
