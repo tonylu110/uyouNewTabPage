@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import '../scss/Background.scss'
 import MainArea from './MainArea'
+import One from './One'
 
 export default class Background extends Component<any, any> {
   constructor(props: Object) {
@@ -28,6 +29,7 @@ export default class Background extends Component<any, any> {
         }}
       >
         <MainArea />
+        <One />
       </div>
     )
   }
