@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import '../scss/MainArea.scss'
+import LinkArea from './LinkArea'
 import MoreSearch from './MoreSearch'
 import SearchBar from './SearchBar'
 
@@ -41,6 +42,7 @@ export default class MainArea extends Component<any, any> {
             })
           }} 
         />
+        <LinkArea />
       </div>
     )
   }

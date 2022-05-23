@@ -7,10 +7,10 @@ export default class Background extends Component<any, any> {
     super(props)
     let screenHeight: number = document.documentElement.clientHeight
     let screenWidth: number = window.innerWidth
-    let backgroundImage: string = 'url(https://iw233.cn/api.php?sort=pc)'
+    let backgroundImage: string = 'url(https://dev.iw233.cn/api.php?sort=pc)'
     let backgroundHeight: string = ''
     if (screenWidth < 768) {
-      backgroundImage = 'url(https://iw233.cn/api.php?sort=mp)'
+      backgroundImage = 'url(https://dev.iw233.cn/api.php?sort=mp)'
       backgroundHeight = screenHeight + 'px'
     }
     this.state = {
