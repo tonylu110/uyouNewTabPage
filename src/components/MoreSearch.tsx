@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 import '../scss/MoreSearch.scss'
-import googleImg from '../img/google.png'
-import bingImg from '../img/bing-logo.png'
-import baiduImg from '../img/baidu.png'
+import getSearchEngine from '../data/SearchData/SearchImg'
+import engine from '../data/SearchData/SearchEngin'
 
 export default class MoreSearch extends Component<any, any> {
-  constructor(props: Object) {
+  constructor(props: any) {
     super(props)
     let screenwidth: number = window.screen.width
     let moreSearchWidth: string = ''
@@ -20,7 +19,6 @@ export default class MoreSearch extends Component<any, any> {
     this.state = {
       moreSearchWidth: moreSearchWidth,
       moreSearchShow: false,
-      imgs: [googleImg, bingImg, baiduImg],
       mOpacity: '0',
       mZIndex: '3',
       moreSearch: '',
@@ -29,7 +27,7 @@ export default class MoreSearch extends Component<any, any> {
   }
   render() {
     return (
-      <div 
+      <div
         className={'more_search' + this.state.moreSearch}
         style={{
           opacity: this.state.mOpacity,
@@ -39,15 +37,15 @@ export default class MoreSearch extends Component<any, any> {
         }}
       >
         <div className="search_engines">
-          <div onClick={() => this.clickSearchImg(false, 'google')}>
-            <img src={this.state.imgs[0]} alt='' />
-          </div>
-          <div onClick={() => this.clickSearchImg(false, 'bing')} style={{ padding: '15px', width: '70px', height: '70px' }}>
-            <img src={this.state.imgs[1]} style={{ width: '70px', height: '70px' }} alt="" />
-          </div>
-          <div onClick={() => this.clickSearchImg(false, 'baidu')} style={{ padding: '20px', height: '60px', width: '60px' }}>
-            <img src={this.state.imgs[2]} style={{ width: '60px', height: '60px' }} alt="" />
-          </div>
+          {
+            engine.map((item: any, index: number) => {
+              return (
+                <div onClick={() => this.clickSearchImg(false, item.name)} style={item.style} key={index}>
+                  <img src={getSearchEngine(item.name)} alt='' style={item.img} />
+                </div>
+              )
+            })
+          }
         </div>
       </div>
     )

@@ -1,10 +1,6 @@
-interface linkStyleData {
-    padding: string;
-    width: string;
-    height: string;
-}
+import iconStyle from "../../util/iconStyle"
 
-const linkStyle: Array<linkStyleData> = [
+const linkStyle: Array<iconStyle> = [
     {
         padding: '15px',
         width: '70px',

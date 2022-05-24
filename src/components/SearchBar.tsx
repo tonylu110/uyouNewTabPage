@@ -1,28 +1,16 @@
 import React, { Component } from 'react'
 import '../scss/SearchBar.scss'
 import googleImg from '../img/google.png'
-import bingImg from '../img/bing-logo.png'
-import baiduImg from '../img/baidu.png'
+import getSearchEngine from '../data/SearchData/SearchImg'
 
 export default class SearchBar extends Component<any, any> {
-  getSearchEngine = (searchEngine: unknown) => {
-    if (searchEngine === null) {
-      return googleImg
-    } else if (searchEngine === 'google') {
-      return googleImg
-    } else if (searchEngine === 'bing') {
-      return bingImg
-    } else if (searchEngine === 'baidu') {
-      return baiduImg
-    }
-  }
   constructor(props: Object) {
     super(props)
     let screenWidth: number = window.innerWidth
     let searchBarWidth: string = ''
     let searchEngine: unknown = localStorage.getItem('searchEngine')
     let searchEngineImg: string | undefined = googleImg
-    searchEngineImg = this.getSearchEngine(searchEngine)
+    searchEngineImg = getSearchEngine(searchEngine)
     if (screenWidth < 768) {
       searchBarWidth = '324px'
     }
@@ -96,14 +84,8 @@ export default class SearchBar extends Component<any, any> {
   }
   static getDerivedStateFromProps(props: any) {
     if (props.moreSearchShow !== null) {
-      let searchEngineImg: string = googleImg
-      if (props.searchEngine === 'google') {
-        searchEngineImg = googleImg
-      } else if (props.searchEngine === 'bing') {
-        searchEngineImg = bingImg
-      } else if (props.searchEngine === 'baidu') {
-        searchEngineImg = baiduImg
-      }
+      let searchEngineImg: string | undefined = googleImg
+      searchEngineImg = getSearchEngine(props.searchEngine)
       return {
         moreSearchShow: props.moreSearchShow,
         searchEngine: props.searchEngine,
