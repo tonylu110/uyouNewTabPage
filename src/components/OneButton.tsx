@@ -7,14 +7,21 @@ export default class OneButton extends Component<any, any> {
     this.state = {
       oneMain: {},
       oneButtonHeight: '',
+      oneWindowShow: false
     }
   }
   render() {
     return (
-      <div className='one_button' style={{ marginBottom: this.state.oneButtonHeight }}>
+      <div className='one_button' style={{ marginBottom: this.state.oneButtonHeight }} onClick={() => this.openOneWindow()}>
         <span>{this.state.oneMain.hitokoto}</span>
       </div>
     )
+  }
+  openOneWindow = () => {
+    this.props.event(true)
+    this.setState({
+      oneWindowShow: true
+    })
   }
   static getDerivedStateFromProps(props: any) {
     let screenWidth: number = window.innerWidth
@@ -27,7 +34,8 @@ export default class OneButton extends Component<any, any> {
     }
     return {
       oneMain: props.oneMain,
-      oneButtonHeight: oneButtonHeight
+      oneButtonHeight: oneButtonHeight,
+      oneWinwodShow: props.oneWindowShow
     }
   }
 }
