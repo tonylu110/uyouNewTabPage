@@ -1,9 +1,9 @@
-import iconStyle from "../../util/iconStyle"
+import IIconStyle from "../../util/IIconStyle"
 
 interface engines {
     name: string,
-    style?: iconStyle | null,
-    img?: iconStyle | null
+    style?: IIconStyle | null,
+    img?: IIconStyle | null
 }
 
 const engine: Array<engines> = [

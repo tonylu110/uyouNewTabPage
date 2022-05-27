@@ -1,6 +1,6 @@
-import iconStyle from "../../util/iconStyle"
+import IIconStyle from "../../util/IIconStyle"
 
-const linkStyle: Array<iconStyle> = [
+const linkStyle: Array<IIconStyle> = [
     {
         padding: '15px',
         width: '70px',
