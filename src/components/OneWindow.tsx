@@ -5,14 +5,24 @@ import closeImg from '../img/close.png'
 export default class OneWindow extends Component<any, any> {
   constructor(props: any) {
     super(props)
+    const screenWidth: number = window.innerWidth
+    let oneMainBottom: string = '-180px'
+    if (screenWidth < 768) {
+      oneMainBottom = '-50vh'
+    }
     this.state = {
       oneMain: {},
-      oneWindowShow: false
+      oneWindowShow: false,
+      oneMainBottom: oneMainBottom
     }
   }
   render() {
+    const screenHeight = document.documentElement.clientHeight
     return (
-      <div className='one_main' style={{transform: this.state.oneWindowShow ? 'scale(1, 1)' : ''}}>
+      <div className='one_main' style={{
+        bottom: (this.state.oneWindowShow ? ((screenHeight - 402) / 2) + 'px' : this.state.oneMainBottom),
+        transform: this.state.oneWindowShow ? 'scale(1, 1)' : ''
+      }}>
         <div className='close_button' onClick={() => this.closeWindow()}>
           <img src={closeImg} alt="" />
         </div>
