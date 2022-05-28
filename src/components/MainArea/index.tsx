@@ -19,11 +19,12 @@ export default class MainArea extends Component<any, any> {
     this.state = {
       moreSearchShow: false,
       searchEngine: searchEngine,
+      mainAreaTopHeight: mainAreaTopHeight
     }
   }
   render() {
     return (
-      <div className='main_area'>
+      <div className='main_area' style={{marginTop: this.state.mainAreaTopHeight}}>
         <SearchBar 
           moreSearchShow={this.state.moreSearchShow}
           searchEngine={this.state.searchEngine} 

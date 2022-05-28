@@ -1,0 +1,11 @@
+::-webkit-scrollbar {
+    display: none;
+}
+.black_back{
+    width: 200vw;
+    height: 200vh;
+    background-color: #00000000;
+    position: fixed;
+    z-index: -1;
+    transition: background-color 0.3s, z-index 0.3s;
+}

@@ -1,4 +1,4 @@
-import IIconStyle from "../../util/IIconStyle"
+import IIconStyle from "../../interface/IIconStyle"
 
 interface engines {
     name: string,

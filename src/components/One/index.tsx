@@ -24,8 +24,21 @@ export default class One extends Component<any, any> {
             oneWindowShow: e
           })
         }} oneWindowShow={this.state.oneWindowShow} />
+        <div
+          className='black_back'
+          style={ this.state.oneWindowShow ? {
+            zIndex: '20',
+            backgroundColor: '#00000050'
+          } : {}}
+          onClick={() => this.clickBlackBack()}
+        ></div>
       </>
     )
+  }
+  clickBlackBack = () => {
+    this.setState({
+      oneWindowShow: false
+    })
   }
   componentDidMount() {
     TarRequest('get', 'https://v1.hitokoto.cn/', null, (res: any) => {

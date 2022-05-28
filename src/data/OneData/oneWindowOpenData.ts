@@ -1,4 +1,4 @@
-import IOneWindowStyle from "../../util/IOneWindowStyle"
+import IOneWindowStyle from "../../interface/IOneWindowStyle"
 
 const screenWidth = window.innerWidth
 const screenHeight =  document.documentElement.clientHeight
