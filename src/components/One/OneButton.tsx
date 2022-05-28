@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import '../scss/OneButton.scss'
+import '../../scss/One/OneButton.scss'
 
 export default class OneButton extends Component<any, any> {
   constructor(props: any) {

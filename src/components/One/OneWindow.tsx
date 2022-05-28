@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import '../scss/OneWindow.scss'
-import oneWindowStyle from "../data/OneData/oneWindowOpenData";
-import closeImg from '../img/close.png'
+import '../../scss/One/OneWindow.scss'
+import oneWindowStyle from "../../data/OneData/oneWindowOpenData";
+import closeImg from '../../img/close.png'
 
 export default class OneWindow extends Component<any, any> {
   constructor(props: any) {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import '../scss/MoreSearch.scss'
-import getSearchEngine from '../data/SearchData/SearchImg'
-import engine from '../data/SearchData/SearchEngin'
+import '../../scss/MainArea/MoreSearch.scss'
+import getSearchEngine from '../../data/SearchData/SearchImg'
+import engine from '../../data/SearchData/SearchEngin'
 
 export default class MoreSearch extends Component<any, any> {
   constructor(props: any) {

@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import '../scss/LinkArea.scss'
-import link from '../data/linkAreaData/links'
-import linkImg from '../data/linkAreaData/linkImg'
-import styles from '../data/linkAreaData/linkStyle'
+import '../../scss/MainArea/LinkArea.scss'
+import link from '../../data/linkAreaData/links'
+import linkImg from '../../data/linkAreaData/linkImg'
+import styles from '../../data/linkAreaData/linkStyle'
 
 export default class LinkArea extends Component<any, any> {
   constructor(props: any) {

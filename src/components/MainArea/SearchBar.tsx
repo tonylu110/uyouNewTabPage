@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import '../scss/SearchBar.scss'
-import googleImg from '../img/google.png'
-import getSearchEngine from '../data/SearchData/SearchImg'
+import '../../scss/MainArea/SearchBar.scss'
+import googleImg from '../../img/google.png'
+import getSearchEngine from '../../data/SearchData/SearchImg'
 
 export default class SearchBar extends Component<any, any> {
   constructor(props: Object) {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import TarRequest from '../util/TarRequest'
+import TarRequest from '../../util/TarRequest'
 import OneButton from './OneButton'
 import OneWindow from './OneWindow'
 
