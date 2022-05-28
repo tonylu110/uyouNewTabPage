@@ -6,14 +6,14 @@ import engine from '../../data/SearchData/SearchEngin'
 export default class MoreSearch extends Component<any, any> {
   constructor(props: any) {
     super(props)
-    let screenwidth: number = window.screen.width
+    let screenWidth: number = window.screen.width
     let moreSearchWidth: string = ''
     let hideAll: unknown = localStorage.getItem('hideAll')
     let moreSearchTop: string = ''
     if (hideAll === 'true') {
       moreSearchTop = '0px'
     }
-    if (screenwidth < 768) {
+    if (screenWidth < 768) {
       moreSearchWidth = '300px'
     }
     this.state = {

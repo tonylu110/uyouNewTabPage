@@ -4,12 +4,13 @@ import oneWindowStyle from "../../data/OneData/oneWindowOpenData";
 import closeImg from '../../img/close.png'
 
 export default class OneWindow extends Component<any, any> {
-  constructor(props: any) {
-    super(props)
-    this.state = {
-      oneMain: {},
-      oneWindowShow: false,
-    }
+  state = {
+    oneMain: {
+      id: undefined,
+      hitokoto: undefined,
+      from: undefined
+    },
+    oneWindowShow: false
   }
   render() {
     return (

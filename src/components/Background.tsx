@@ -4,7 +4,7 @@ import MainArea from './MainArea'
 import One from './One'
 
 export default class Background extends Component<any, any> {
-  constructor(props: Object) {
+  constructor(props: any) {
     super(props)
     let screenHeight: number = document.documentElement.clientHeight
     let screenWidth: number = window.innerWidth

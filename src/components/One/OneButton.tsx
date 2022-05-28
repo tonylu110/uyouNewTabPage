@@ -3,13 +3,12 @@ import '../../scss/One/OneButton.scss'
 import oneButtonStyle from "../../data/OneData/oneButtonData";
 
 export default class OneButton extends Component<any, any> {
-  constructor(props: any) {
-    super(props)
-    this.state = {
-      oneMain: {},
-      oneButtonShow: false,
-      oneWindowShow: false
-    }
+  state = {
+    oneMain: {
+      hitokoto: undefined
+    },
+    oneButtonShow: false,
+    oneWindowShow: false
   }
   render() {
     return (
