@@ -66,7 +66,7 @@ export default class SearchBar extends Component<any, any> {
     this.setState({
       keyword: e.target.value
     })
-    if (e.code === 'Enter') {
+    if (e.key === 'Enter') {
       this.toSearch(this.state.searchEngine)
     }
   }
