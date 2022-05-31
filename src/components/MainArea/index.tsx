@@ -19,7 +19,8 @@ export default class MainArea extends Component<any, any> {
     this.state = {
       moreSearchShow: false,
       searchEngine: searchEngine,
-      mainAreaTopHeight: mainAreaTopHeight
+      mainAreaTopHeight: mainAreaTopHeight,
+      hideAll: false
     }
   }
   render() {
@@ -43,8 +44,13 @@ export default class MainArea extends Component<any, any> {
             })
           }} 
         />
-        <LinkArea />
+        {this.state.hideAll ? null : <LinkArea />}
       </div>
     )
+  }
+  static getDerivedStateFromProps(props: any) {
+    return {
+      hideAll: props.hideAll
+    }
   }
 }

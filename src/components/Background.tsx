@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import '../scss/Background.scss'
 import MainArea from './MainArea'
 import One from './One'
+import RightTopButtons from "./RightTopButtons";
+import isHideAll from "../util/isHideAll";
 
 export default class Background extends Component<any, any> {
   constructor(props: any) {
@@ -20,7 +22,8 @@ export default class Background extends Component<any, any> {
       isMobile: isMobile,
       backgroundShow: false,
       background: backgroundImage,
-      backgroundHeight: backgroundHeight
+      backgroundHeight: backgroundHeight,
+      hideAll: isHideAll()
     }
   }
   render() {
@@ -40,8 +43,13 @@ export default class Background extends Component<any, any> {
           height: this.state.backgroundHeight
         }}
       >
-        <MainArea />
-        <One />
+        <MainArea hideAll={this.state.hideAll} />
+        {this.state.hideAll ? null : <One />}
+        <RightTopButtons hideAll={(e: boolean) => {
+          this.setState({
+            hideAll: e
+          })
+        }} />
       </div>
     )
   }
