@@ -4,12 +4,9 @@ import OneButton from './OneButton'
 import OneWindow from './OneWindow'
 
 export default class One extends Component<any, any> {
-  constructor(props: any) {
-    super(props)
-    this.state = {
-      oneMain: {},
-      oneWindowShow: false
-    }
+  state = {
+    oneMain: {},
+    oneWindowShow: false
   }
   render() {
     return (

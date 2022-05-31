@@ -3,19 +3,12 @@ import '../../scss/MainArea/LinkArea.scss'
 import link from '../../data/linkAreaData/links'
 import linkImg from '../../data/linkAreaData/linkImg'
 import styles from '../../data/linkAreaData/linkStyle'
+import isMobile from "../../util/isMobile";
 
 export default class LinkArea extends Component<any, any> {
-  constructor(props: any) {
-    super(props)    
-    let screenWidth: number = window.innerWidth
-    let isMobile: boolean = false
-    if (screenWidth < 768) {
-      isMobile = true
-    }
-    this.state = {
-      isMobile: isMobile,
-      links: link,
-    }
+  state = {
+    isMobile: isMobile(),
+    links: link,
   }
   render() {
     return (

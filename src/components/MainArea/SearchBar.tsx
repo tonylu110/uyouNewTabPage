@@ -2,16 +2,16 @@ import React, { Component } from 'react'
 import '../../scss/MainArea/SearchBar.scss'
 import googleImg from '../../img/google.png'
 import getSearchEngine from '../../data/SearchData/SearchImg'
+import isMobile from "../../util/isMobile";
 
 export default class SearchBar extends Component<any, any> {
   constructor(props: Object) {
     super(props)
-    let screenWidth: number = window.innerWidth
     let searchBarWidth: string = ''
     let searchEngine: unknown = localStorage.getItem('searchEngine')
     let searchEngineImg: string | undefined = googleImg
     searchEngineImg = getSearchEngine(searchEngine)
-    if (screenWidth < 768) {
+    if (isMobile()) {
       searchBarWidth = '324px'
     }
     this.state = {
