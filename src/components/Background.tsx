@@ -4,25 +4,15 @@ import MainArea from './MainArea'
 import One from './One'
 import RightTopButtons from "./RightTopButtons";
 import isHideAll from "../util/isHideAll";
-import isMobile from "../util/isMobile";
+import mobileCheck from "../util/isMobile";
 
 export default class Background extends Component<any, any> {
-  constructor(props: any) {
-    super(props)
-    let screenHeight: number = document.documentElement.clientHeight
-    let backgroundImage: string = 'url(https://dev.iw233.cn/api.php?sort=pc)'
-    let backgroundHeight: string = ''
-    if (isMobile()) {
-      backgroundImage = 'url(https://dev.iw233.cn/api.php?sort=mp)'
-      backgroundHeight = screenHeight + 'px'
-    }
-    this.state = {
-      isMobile: isMobile(),
-      backgroundShow: false,
-      background: backgroundImage,
-      backgroundHeight: backgroundHeight,
-      hideAll: isHideAll()
-    }
+  state = {
+    isMobile: new mobileCheck().isMobile(),
+    backgroundShow: false,
+    background: new mobileCheck().getBackground().backgroundImage,
+    backgroundHeight: new mobileCheck().getBackground().backgroundHeight,
+    hideAll: isHideAll()
   }
   render() {
     let img: HTMLImageElement = document.createElement('img');

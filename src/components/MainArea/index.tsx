@@ -3,25 +3,15 @@ import '../../scss/MainArea/MainArea.scss'
 import LinkArea from './LinkArea'
 import MoreSearch from './MoreSearch'
 import SearchBar from './SearchBar'
+import mobileCheck from "../../util/isMobile";
+import getSearchEngine from "../../util/getSearchEngine";
 
 export default class MainArea extends Component<any, any> {
-  constructor(props: any) {
-    super(props)
-    let screenWidth: number = window.innerWidth
-    let searchEngine: unknown = localStorage.getItem('searchEngine')
-    let mainAreaTopHeight: string = ''
-    if (searchEngine === null) {
-      searchEngine = 'google'
-    }
-    if (screenWidth < 768) {
-      mainAreaTopHeight = '-200px'
-    }
-    this.state = {
-      moreSearchShow: false,
-      searchEngine: searchEngine,
-      mainAreaTopHeight: mainAreaTopHeight,
-      hideAll: false
-    }
+  state = {
+    moreSearchShow: false,
+    searchEngine: getSearchEngine(),
+    mainAreaTopHeight: new mobileCheck().getMainAreaTopHeight(),
+    hideAll: false
   }
   render() {
     return (

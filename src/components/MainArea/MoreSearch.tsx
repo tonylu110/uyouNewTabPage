@@ -2,28 +2,17 @@ import React, { Component } from 'react'
 import '../../scss/MainArea/MoreSearch.scss'
 import getSearchEngine from '../../data/SearchData/SearchImg'
 import engine from '../../data/SearchData/SearchEngin'
-import isMobile from "../../util/isMobile";
+import mobileCheck from "../../util/isMobile";
+import isHideAll from "../../util/isHideAll";
 
 export default class MoreSearch extends Component<any, any> {
-  constructor(props: any) {
-    super(props)
-    let moreSearchWidth: string = ''
-    let hideAll: unknown = localStorage.getItem('hideAll')
-    let moreSearchTop: string = ''
-    if (hideAll === 'true') {
-      moreSearchTop = '0px'
-    }
-    if (isMobile()) {
-      moreSearchWidth = '300px'
-    }
-    this.state = {
-      moreSearchWidth: moreSearchWidth,
-      moreSearchShow: false,
-      mOpacity: '0',
-      mZIndex: '3',
-      moreSearch: '',
-      moreSearchTop: moreSearchTop
-    }
+  state = {
+    moreSearchWidth: new mobileCheck().getMoreSearchWidth(),
+    moreSearchShow: false,
+    mOpacity: '0',
+    mZIndex: '3',
+    moreSearch: '',
+    moreSearchTop: isHideAll() ? '0px' : ''
   }
   render() {
     return (

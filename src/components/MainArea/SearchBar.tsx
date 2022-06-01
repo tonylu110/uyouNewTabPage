@@ -1,29 +1,19 @@
 import React, { Component } from 'react'
 import '../../scss/MainArea/SearchBar.scss'
-import googleImg from '../../img/google.png'
-import getSearchEngine from '../../data/SearchData/SearchImg'
-import isMobile from "../../util/isMobile";
+import getSearchEngineImg from '../../data/SearchData/SearchImg'
+import mobileCheck from "../../util/isMobile";
+import getSearchEngine from "../../util/getSearchEngine";
 
 export default class SearchBar extends Component<any, any> {
-  constructor(props: Object) {
-    super(props)
-    let searchBarWidth: string = ''
-    let searchEngine: unknown = localStorage.getItem('searchEngine')
-    let searchEngineImg: string | undefined = googleImg
-    searchEngineImg = getSearchEngine(searchEngine)
-    if (isMobile()) {
-      searchBarWidth = '324px'
-    }
-    this.state = {
-      searchBarWidth: searchBarWidth,
-      moreSearchShow: false,
-      searchEngine: searchEngine,
-      searchEngineImg: searchEngineImg,
-      keyword: '',
-      searchBtnShow: {
-        keywordsRight: 'none',
-        searchBtn: ''
-      }
+  state = {
+    searchBarWidth: new mobileCheck().getSearchWidth(),
+    moreSearchShow: false,
+    searchEngine: getSearchEngine(),
+    searchEngineImg: getSearchEngineImg(getSearchEngine()),
+    keyword: '',
+    searchBtnShow: {
+      keywordsRight: 'none',
+      searchBtn: ''
     }
   }
   render() {
@@ -70,7 +60,7 @@ export default class SearchBar extends Component<any, any> {
       this.toSearch(this.state.searchEngine)
     }
   }
-  toSearch = (searchEngine: string) => {
+  toSearch = (searchEngine: string | unknown) => {
     switch (searchEngine) {
       case 'google':
         return window.open('https://www.google.com/search?q=' + this.state.keyword, '_self')
@@ -84,12 +74,10 @@ export default class SearchBar extends Component<any, any> {
   }
   static getDerivedStateFromProps(props: any) {
     if (props.moreSearchShow !== null) {
-      let searchEngineImg: string | undefined = googleImg
-      searchEngineImg = getSearchEngine(props.searchEngine)
       return {
         moreSearchShow: props.moreSearchShow,
         searchEngine: props.searchEngine,
-        searchEngineImg: searchEngineImg
+        searchEngineImg: getSearchEngineImg(props.searchEngine)
       };
     }
     return null;

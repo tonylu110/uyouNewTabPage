@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import '../../scss/One/OneWindow.scss'
 import oneWindowStyle from "../../data/OneData/oneWindowOpenData";
 import closeImg from '../../img/close.png'
+import oneWindowMobileFontSize from "../../data/OneData/oneWindowMobileFontSize";
+import mobileCheck from "../../util/isMobile";
 
 export default class OneWindow extends Component<any, any> {
   state = {
@@ -10,7 +12,8 @@ export default class OneWindow extends Component<any, any> {
       hitokoto: undefined,
       from: undefined
     },
-    oneWindowShow: false
+    oneWindowShow: false,
+    isMobile: new mobileCheck().isMobile()
   }
   render() {
     return (
@@ -19,9 +22,9 @@ export default class OneWindow extends Component<any, any> {
           <img src={closeImg} alt="" />
         </div>
         <div className='one_main_info'>
-          <span className='one_num'>#{this.state.oneMain.id}</span>
-          <span className='one_text'>{this.state.oneMain.hitokoto}</span>
-          <span className='one_from'>———{this.state.oneMain.from}</span>
+          <span className='one_num' style={{fontSize: oneWindowMobileFontSize(this.state.isMobile)}}>#{this.state.oneMain.id}</span>
+          <span className='one_text' style={{fontSize: oneWindowMobileFontSize(this.state.isMobile)}}>{this.state.oneMain.hitokoto}</span>
+          <span className='one_from' style={{fontSize: oneWindowMobileFontSize(this.state.isMobile)}}>———{this.state.oneMain.from}</span>
         </div>
       </div>
     )

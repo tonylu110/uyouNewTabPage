@@ -3,11 +3,11 @@ import '../../scss/MainArea/LinkArea.scss'
 import link from '../../data/linkAreaData/links'
 import linkImg from '../../data/linkAreaData/linkImg'
 import styles from '../../data/linkAreaData/linkStyle'
-import isMobile from "../../util/isMobile";
+import mobileCheck from "../../util/isMobile";
 
 export default class LinkArea extends Component<any, any> {
   state = {
-    isMobile: isMobile(),
+    isMobile: new mobileCheck().isMobile(),
     links: link,
   }
   render() {
