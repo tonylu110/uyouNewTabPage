@@ -2,9 +2,10 @@ import React, { Component } from 'react'
 import '../scss/Background.scss'
 import MainArea from './MainArea'
 import One from './One'
-import RightTopButtons from "./RightTopButtons";
+import RightTopButtons from "./buttons/RightTopButtons";
 import isHideAll from "../util/isHideAll";
 import mobileCheck from "../util/isMobile";
+import BottomButtons from "./buttons/BottomButtons";
 
 export default class Background extends Component<any, any> {
   private readonly mobileCheck: mobileCheck = new mobileCheck()
@@ -27,13 +28,17 @@ export default class Background extends Component<any, any> {
       >
         <MainArea hideAll={this.state.hideAll}/>
         {this.state.hideAll ? null : <One/>}
-        <RightTopButtons hideAll={(e: boolean) => {
-          this.setState({
-            hideAll: e
-          })
-        }}/>
+        {this.state.isMobile ?
+          <BottomButtons hideAllFn={(e: boolean) => this.getHideAll(e)} /> :
+          <RightTopButtons hideAll={(e: boolean) => this.getHideAll(e)}/>
+        }
       </div>
     )
+  }
+  getHideAll = (e: boolean) => {
+    this.setState({
+      hideAll: e
+    })
   }
   componentDidMount() {
     let img = new Image()
