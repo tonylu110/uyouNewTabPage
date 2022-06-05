@@ -1,36 +1,27 @@
-import React, {Component} from 'react';
+import React, {FC, useState} from 'react';
 import hideImg from '../../img/hide.png';
 import '../../scss/buttons/RightTopButtons.scss'
 import isHideAll from "../../util/isHideAll";
+import IButtonsProps from "../../interface/Props/IButtonsProps";
 
-class RightTopButtons extends Component<any, any> {
-  state = {
-    hideAll: isHideAll()
+const RightTopButtons: FC<IButtonsProps> = ({
+  hideAllFn
+}) => {
+  const [hideAll, setHideAll] = useState(isHideAll)
+
+  const hideAllUse = () => {
+    hideAllFn(!hideAll);
+    setHideAll(!hideAll);
+    localStorage.setItem('hideAll', !hideAll + '');
   }
-  render() {
-    return (
-      <div className='top_right_button'>
-        <div className='tr_button' onClick={() => this.hideAll()}>
-          <img src={hideImg} alt="" />
-        </div>
+
+  return (
+    <div className='top_right_button'>
+      <div className='tr_button' onClick={() => hideAllUse()}>
+        <img src={hideImg} alt="" />
       </div>
-    );
-  }
-  hideAll = () => {
-    if (!this.state.hideAll) {
-      this.props.hideAll(true)
-      this.setState({
-        hideAll: true
-      })
-      localStorage.setItem('hideAll', 'true')
-    } else {
-      this.props.hideAll(false)
-      this.setState({
-        hideAll: false
-      })
-      localStorage.setItem('hideAll', 'false')
-    }
-  }
+    </div>
+  )
 }
 
 export default RightTopButtons;

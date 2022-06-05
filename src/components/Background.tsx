@@ -30,7 +30,7 @@ export default class Background extends Component<any, any> {
         {this.state.hideAll ? null : <One/>}
         {this.state.isMobile ?
           <BottomButtons hideAllFn={(e: boolean) => this.getHideAll(e)} /> :
-          <RightTopButtons hideAll={(e: boolean) => this.getHideAll(e)}/>
+          <RightTopButtons hideAllFn={(e: boolean) => this.getHideAll(e)}/>
         }
       </div>
     )

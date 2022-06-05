@@ -10,15 +10,9 @@ const BottomButtons: FC<IButtonsProps> = ({
   const [hideAll, setHideAll] = useState(isHideAll());
 
   const hideAllUse = () => {
-    if (!hideAll) {
-      hideAllFn(true)
-      setHideAll(true)
-      localStorage.setItem('hideAll', 'true')
-    } else {
-      hideAllFn(false)
-      setHideAll(false)
-      localStorage.setItem('hideAll', 'false')
-    }
+    hideAllFn(!hideAll);
+    setHideAll(!hideAll);
+    localStorage.setItem('hideAll', !hideAll + '');
   }
   return (
     <div className='bottom_button'>
