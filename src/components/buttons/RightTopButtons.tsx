@@ -1,5 +1,6 @@
 import React, {FC, useState} from 'react';
 import hideImg from '../../img/hide.png';
+import reloadImg from '../../img/reload.png'
 import '../../scss/buttons/RightTopButtons.scss'
 import isHideAll from "../../util/isHideAll";
 import IButtonsProps from "../../interface/Props/IButtonsProps";
@@ -20,6 +21,11 @@ const RightTopButtons: FC<IButtonsProps> = ({
       <div className='tr_button' onClick={() => hideAllUse()}>
         <img src={hideImg} alt="" />
       </div>
+      {hideAll ? null : (
+        <div className='tr_button' onClick={() => window.location.reload()}>
+          <img src={reloadImg} alt="" />
+        </div>
+      )}
     </div>
   )
 }

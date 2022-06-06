@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, {useEffect, useState} from 'react'
 import '../scss/Background.scss'
 import MainArea from './MainArea'
 import One from './One'
@@ -7,46 +7,43 @@ import isHideAll from "../util/isHideAll";
 import mobileCheck from "../util/isMobile";
 import BottomButtons from "./buttons/BottomButtons";
 
-export default class Background extends Component<any, any> {
-  private readonly mobileCheck: mobileCheck = new mobileCheck()
-  state = {
-    isMobile: this.mobileCheck.isMobile(),
-    backgroundShow: false,
-    background: this.mobileCheck.getBackground().backgroundImage,
-    backgroundHeight: this.mobileCheck.getBackground().backgroundHeight,
-    hideAll: isHideAll()
+const Background = () => {
+  const checkMobile = new mobileCheck()
+  const [isMobile, setIsMobile] = useState(checkMobile.isMobile())
+  const [backgroundShow, setBackgroundShow] = useState(false)
+  const [background, setBackground] = useState(checkMobile.getBackground().backgroundImage)
+  const [backgroundHeight, setBackgroundHeight] = useState(checkMobile.getBackground().backgroundHeight)
+  const [hideAll, setHideAll] = useState(isHideAll())
+
+  const getHideAll = (e: boolean) => {
+    setHideAll(e)
   }
-  render() {
-    return (
-      <div
-        className='background'
-        style={{
-          display: this.state.backgroundShow ? '' : 'none',
-          backgroundImage: this.state.background,
-          height: this.state.backgroundHeight
-        }}
-      >
-        <MainArea hideAll={this.state.hideAll}/>
-        {this.state.hideAll ? null : <One/>}
-        {this.state.isMobile ?
-          <BottomButtons hideAllFn={(e: boolean) => this.getHideAll(e)} /> :
-          <RightTopButtons hideAllFn={(e: boolean) => this.getHideAll(e)}/>
-        }
-      </div>
-    )
-  }
-  getHideAll = (e: boolean) => {
-    this.setState({
-      hideAll: e
-    })
-  }
-  componentDidMount() {
+
+  useEffect(() => {
     let img = new Image()
-    img.src = this.state.background.slice(4, -1)
+    img.src = background.slice(4, -1)
     img.onload = () => {
-      this.setState({
-        backgroundShow: true
-      })
+      setBackgroundShow(true)
     }
-  }
+  }, [])
+
+  return (
+    <div
+      className='background'
+      style={{
+        display: backgroundShow ? '' : 'none',
+        backgroundImage: background,
+        height: backgroundHeight
+      }}
+    >
+      <MainArea hideAll={hideAll}/>
+      {hideAll ? null : <One/>}
+      {isMobile ?
+        <BottomButtons hideAllFn={(e: boolean) => getHideAll(e)} /> :
+        <RightTopButtons hideAllFn={(e: boolean) => getHideAll(e)} />
+      }
+    </div>
+  )
 }
+
+export default Background

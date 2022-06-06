@@ -2,6 +2,7 @@ import React, {FC, useState} from 'react';
 import IButtonsProps from "../../interface/Props/IButtonsProps";
 import '../../scss/buttons/BottomButtons.scss'
 import hideImg from '../../img/hide.png';
+import reloadImg from '../../img/reload.png';
 import isHideAll from "../../util/isHideAll";
 
 const BottomButtons: FC<IButtonsProps> = ({
@@ -19,6 +20,11 @@ const BottomButtons: FC<IButtonsProps> = ({
       <div className='b_button' onClick={() => hideAllUse()}>
         <img src={hideImg} alt='' />
       </div>
+      {hideAll ? null : (
+        <div className='b_button' onClick={() => window.location.reload()}>
+          <img src={reloadImg} alt='' />
+        </div>
+      )}
     </div>
   );
 }
