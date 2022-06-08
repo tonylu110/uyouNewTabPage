@@ -6,6 +6,7 @@ import RightTopButtons from "./buttons/RightTopButtons";
 import isHideAll from "../util/isHideAll";
 import mobileCheck from "../util/isMobile";
 import BottomButtons from "./buttons/BottomButtons";
+import RightBottomButtons from './buttons/RightBottomButtons';
 
 const Background = () => {
   const checkMobile = new mobileCheck()
@@ -40,7 +41,10 @@ const Background = () => {
       {hideAll ? null : <One/>}
       {isMobile ?
         <BottomButtons hideAllFn={(e: boolean) => getHideAll(e)} /> :
-        <RightTopButtons hideAllFn={(e: boolean) => getHideAll(e)} />
+        <>
+          <RightTopButtons hideAllFn={(e: boolean) => getHideAll(e)} />
+          <RightBottomButtons />
+        </>
       }
     </div>
   )
