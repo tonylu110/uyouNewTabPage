@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import { useState } from 'react'
 import '../../../scss/buttons/RightBottomButton.scss'
 import infoImg from '../../../img/info.png'
 

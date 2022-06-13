@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react'
+import { FC, useState } from 'react'
 import '../../scss/MainArea/MainArea.scss'
 import LinkArea from './LinkArea'
 import MoreSearch from './MoreSearch'
@@ -6,6 +6,7 @@ import SearchBar from './SearchBar'
 import mobileCheck from "../../util/isMobile";
 import getSearchEngine from "../../util/getSearchEngine";
 import IMainAreaProps from '../../interface/Props/IMainAreaProps'
+import IMoreSearchShow from '../../interface/IMoreSearchShow'
 
 const MainArea: FC<IMainAreaProps> = ({
   hideAll
@@ -14,21 +15,23 @@ const MainArea: FC<IMainAreaProps> = ({
   const [searchEngine, setSearchEngine] = useState(getSearchEngine())
   const [mainAreaTopHeight, setMainAreaTopHeight] = useState(new mobileCheck().getMainAreaTopHeight())
 
+  const setMoreSearchIn = (show: boolean, engin: string | null) => {
+    setMoreSearchShow(show)
+    if (engin !== null) {
+      setSearchEngine(engin)
+    }
+  }
+
   return (
     <div className='main_area' style={{ marginTop: mainAreaTopHeight }}>
       <SearchBar
-        moreSearchShow={moreSearchShow}
-        searchEngine={searchEngine}
-        event={(e: boolean) => {
-          setMoreSearchShow(e)
-        }}
+        moreSearchShowProp={moreSearchShow}
+        searchEngineProp={searchEngine}
+        setMoreSearchIn={(e: boolean) => setMoreSearchIn(e, null)}
       />
       <MoreSearch
-        moreSearchShow={moreSearchShow}
-        event={(e: any) => {
-          setMoreSearchShow(e.moreSearchShow)
-          setSearchEngine(e.searchEngine)
-        }}
+        moreSearchShowProp={moreSearchShow}
+        setMoreSearchIn={(e: IMoreSearchShow) => setMoreSearchIn(e.moreSearchShow, e.searchEngine)}
       />
       {hideAll ? null : <LinkArea />}
     </div>

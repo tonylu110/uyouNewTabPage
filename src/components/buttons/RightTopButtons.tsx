@@ -1,4 +1,4 @@
-import React, {FC, useState} from 'react';
+import { FC, useState } from 'react';
 import hideImg from '../../img/hide.png';
 import reloadImg from '../../img/reload.png'
 import '../../scss/buttons/RightTopButtons.scss'

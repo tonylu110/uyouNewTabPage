@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import { useEffect, useState } from 'react'
 import '../scss/Background.scss'
 import MainArea from './MainArea'
 import One from './One'

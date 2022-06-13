@@ -1,85 +1,80 @@
-import React, { Component } from 'react'
+import { FC, useEffect, useState } from 'react'
 import '../../scss/MainArea/SearchBar.scss'
 import getSearchEngineImg from '../../data/SearchData/SearchImg'
 import mobileCheck from "../../util/isMobile";
 import getSearchEngine from "../../util/getSearchEngine";
+import ISearchBarProp from '../../interface/Props/ISearchBarProp';
 
-export default class SearchBar extends Component<any, any> {
-  state = {
-    searchBarWidth: new mobileCheck().getSearchWidth(),
-    moreSearchShow: false,
-    searchEngine: getSearchEngine(),
-    searchEngineImg: getSearchEngineImg(getSearchEngine()),
-    keyword: '',
-    searchBtnShow: {
-      keywordsRight: 'none',
-      searchBtn: ''
-    }
+const SearchBar: FC<ISearchBarProp> = ({
+  moreSearchShowProp,
+  searchEngineProp,
+  setMoreSearchIn
+}) => {
+  const [searchBarWidth, setSearchBarWidth] = useState(new mobileCheck().getSearchWidth())
+  const [moreSearchShow, setMoreSearchShow] = useState(false)
+  const [searchEngine, setSearchEngine] = useState(getSearchEngine())
+  const [searchEngineImg, setSearchEngineImg] = useState(getSearchEngineImg(getSearchEngine()))
+  const [keyword, setKeyword] = useState('')
+  const [searchBtnShow, setSearchBtnShow] = useState({
+    keywordsRight: 'none',
+    searchBtn: ''
+  })
+
+  useEffect(() => {
+    setMoreSearchShow(moreSearchShowProp)
+    setSearchEngine(searchEngineProp)
+    setSearchEngineImg(getSearchEngineImg(searchEngineProp))
+  }, [moreSearchShowProp, searchEngineProp])
+
+  const clickSearchImg = (moreSearchShow: boolean) => {
+    setMoreSearchIn(!moreSearchShow)
+    setMoreSearchShow(!moreSearchShow)
   }
-  render() {
-    return (
-      <div 
-        className='search_bar'
-        style={{width: this.state.searchBarWidth}}
-      >
-        <img alt='' src={this.state.searchEngineImg} onClick={() => this.clickSearchImg(this.state.moreSearchShow)} />
-        <input type="text" onKeyUp={this.searchKeyword} />
-        <div className="keywords_right" style={{display: this.state.searchBtnShow.keywordsRight}}></div>
-        <div className="search_btn" onClick={() => this.toSearch(this.state.searchEngine)} style={{width: this.state.searchBtnShow.searchBtn}}>搜索</div>
-      </div>
-    )
-  }
-  clickSearchImg = (moreSearchShow: boolean) => {
-    this.props.event(!moreSearchShow)
-    this.setState({
-      moreSearchShow: !moreSearchShow
-    })
-  }
-  searchKeyword = (e: any) => {
-    if(this.state.searchBarWidth === '') {
+
+  const searchKeyword = (e: any) => {
+    if (searchBarWidth === '') {
       if (e.target.value.length > 0) {
-        this.setState({
-          searchBtnShow: {
-            keywordsRight: '',
-            searchBtn: '45px'
-          }
+        setSearchBtnShow({
+          keywordsRight: '',
+          searchBtn: '45px'
         })
       } else {
-        this.setState({
-          searchBtnShow: {
-            keywordsRight: 'none',
-            searchBtn: ''
-          }
+        setSearchBtnShow({
+          keywordsRight: 'none',
+          searchBtn: ''
         })
       }
     }
-    this.setState({
-      keyword: e.target.value
-    })
+    setKeyword(e.target.value)
     if (e.key === 'Enter') {
-      this.toSearch(this.state.searchEngine)
+      toSearch(searchEngine)
     }
   }
-  toSearch = (searchEngine: string | unknown) => {
+
+  const toSearch = (searchEngine: string | unknown) => {
     switch (searchEngine) {
       case 'google':
-        return window.open('https://www.google.com/search?q=' + this.state.keyword, '_self')
+        return window.open('https://www.google.com/search?q=' + keyword, '_self')
       case 'bing':
-        return window.open('https://cn.bing.com/search?q=' + this.state.keyword, '_self')
+        return window.open('https://cn.bing.com/search?q=' + keyword, '_self')
       case 'baidu':
-        return window.open('https://www.baidu.com/s?wd=' + this.state.keyword, '_self')
+        return window.open('https://www.baidu.com/s?wd=' + keyword, '_self')
       default:
         return null
     }
   }
-  static getDerivedStateFromProps(props: any) {
-    if (props.moreSearchShow !== null) {
-      return {
-        moreSearchShow: props.moreSearchShow,
-        searchEngine: props.searchEngine,
-        searchEngineImg: getSearchEngineImg(props.searchEngine)
-      };
-    }
-    return null;
-  }
+
+  return (
+    <div
+      className='search_bar'
+      style={{ width: searchBarWidth }}
+    >
+      <img alt='' src={searchEngineImg} onClick={() => clickSearchImg(moreSearchShow)} />
+      <input type="text" onKeyUp={searchKeyword} />
+      <div className="keywords_right" style={{ display: searchBtnShow.keywordsRight }}></div>
+      <div className="search_btn" onClick={() => toSearch(searchEngine)} style={{ width: searchBtnShow.searchBtn }}>搜索</div>
+    </div>
+  )
 }
+
+export default SearchBar
