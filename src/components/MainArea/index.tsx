@@ -1,4 +1,4 @@
-import { FC, useState } from 'react'
+import { FC, useState, useEffect } from 'react'
 import '../../scss/MainArea/MainArea.scss'
 import LinkArea from './LinkArea'
 import MoreSearch from './MoreSearch'
@@ -7,6 +7,7 @@ import mobileCheck from "../../util/isMobile";
 import getSearchEngine from "../../util/getSearchEngine";
 import IMainAreaProps from '../../interface/Props/IMainAreaProps'
 import IMoreSearchShow from '../../interface/IMoreSearchShow'
+import getNowMobileState from '../../util/getNowMobileState'
 
 const MainArea: FC<IMainAreaProps> = ({
   hideAll
@@ -21,6 +22,18 @@ const MainArea: FC<IMainAreaProps> = ({
       setSearchEngine(engin)
     }
   }
+
+  useEffect(() => {
+    getNowMobileState((isMobile: boolean) => {
+      var marginTop
+      if (isMobile) {
+        marginTop = '-200px'
+      } else {
+        marginTop = ''
+      }
+      setMainAreaTopHeight(marginTop)
+    })
+  }, [])
 
   return (
     <div className='main_area' style={{ marginTop: mainAreaTopHeight }}>

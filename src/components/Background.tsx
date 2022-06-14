@@ -7,13 +7,14 @@ import isHideAll from "../util/isHideAll";
 import mobileCheck from "../util/isMobile";
 import BottomButtons from "./buttons/BottomButtons";
 import RightBottomButtons from './buttons/RightBottomButtons';
+import getNowMobileState from '../util/getNowMobileState';
 
 const Background = () => {
   const checkMobile = new mobileCheck()
   const [isMobile, setIsMobile] = useState(checkMobile.isMobile())
   const [backgroundShow, setBackgroundShow] = useState(false)
-  const [background, setBackground] = useState(checkMobile.getBackground().backgroundImage)
-  const [backgroundHeight, setBackgroundHeight] = useState(checkMobile.getBackground().backgroundHeight)
+  const background = checkMobile.getBackground().backgroundImage
+  const backgroundHeight = checkMobile.getBackground().backgroundHeight
   const [hideAll, setHideAll] = useState(isHideAll())
   const [mobileShowButton, setMobileShowButton] = useState(true)
 
@@ -27,6 +28,12 @@ const Background = () => {
     img.onload = () => {
       setBackgroundShow(true)
     }
+  }, [])
+
+  useEffect(() => {
+    getNowMobileState((isMobile: boolean) => {
+      setIsMobile(isMobile)
+    })
   }, [])
 
   useEffect(() => {

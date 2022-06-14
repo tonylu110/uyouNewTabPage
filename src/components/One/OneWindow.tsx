@@ -11,7 +11,7 @@ const OneWindow: FC<IOneWindowProps> = ({
   oneButtonClick,
   oneWindowShow
 }) => {
-  const [isMobile, setIsMobile] = useState(new mobileCheck().isMobile())
+  const isMobile = new mobileCheck().isMobile()
 
   return (
     <div className='one_main' style={oneWindowStyle(oneWindowShow)}>

@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import '../../scss/MainArea/LinkArea.scss'
 import link from '../../data/linkAreaData/links'
 import linkImg from '../../data/linkAreaData/linkImg'
 import styles from '../../data/linkAreaData/linkStyle'
 import mobileCheck from "../../util/isMobile";
+import getNowMobileState from '../../util/getNowMobileState'
 
 const LinkArea = () => {
   const links = link
@@ -12,6 +13,12 @@ const LinkArea = () => {
   const openLink = (link: string) => {
     window.open(link, '_self')
   }
+
+  useEffect(() => {
+    getNowMobileState((isMobile: boolean) => {
+      setIsMobile(isMobile)
+    })
+  }, [])
 
   return (
     <div className="link_area" style={{ width: (isMobile ? '366px' : '') }}>

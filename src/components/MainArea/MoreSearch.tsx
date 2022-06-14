@@ -5,6 +5,7 @@ import engine from '../../data/SearchData/SearchEngin'
 import mobileCheck from "../../util/isMobile";
 import isHideAll from "../../util/isHideAll";
 import IMoreSearchProps from '../../interface/Props/IMoreSearchProps';
+import getNowMobileState from '../../util/getNowMobileState';
 
 const MoreSearch: FC<IMoreSearchProps> = ({
   moreSearchShowProp,
@@ -40,6 +41,16 @@ const MoreSearch: FC<IMoreSearchProps> = ({
       setMoreSearch(' more_search_show')
     }
   }, [moreSearchShowProp])
+
+  useEffect(() => {
+    getNowMobileState((isMobile: boolean) => {
+      if (isMobile) {
+        setMoreSearchWidth('324px')
+      } else {
+        setMoreSearchWidth('')
+      }
+    })
+  }, [])
 
   return (
     <div

@@ -4,6 +4,7 @@ import getSearchEngineImg from '../../data/SearchData/SearchImg'
 import mobileCheck from "../../util/isMobile";
 import getSearchEngine from "../../util/getSearchEngine";
 import ISearchBarProp from '../../interface/Props/ISearchBarProp';
+import getNowMobileState from '../../util/getNowMobileState';
 
 const SearchBar: FC<ISearchBarProp> = ({
   moreSearchShowProp,
@@ -25,6 +26,16 @@ const SearchBar: FC<ISearchBarProp> = ({
     setSearchEngine(searchEngineProp)
     setSearchEngineImg(getSearchEngineImg(searchEngineProp))
   }, [moreSearchShowProp, searchEngineProp])
+
+  useEffect(() => {
+    getNowMobileState((isMobile: boolean) => {
+      if (isMobile) {
+        setSearchBarWidth('324px')
+      } else {
+        setSearchBarWidth('')
+      }
+    })
+  }, [])
 
   const clickSearchImg = (moreSearchShow: boolean) => {
     setMoreSearchIn(!moreSearchShow)
