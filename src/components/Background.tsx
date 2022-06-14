@@ -15,6 +15,7 @@ const Background = () => {
   const [background, setBackground] = useState(checkMobile.getBackground().backgroundImage)
   const [backgroundHeight, setBackgroundHeight] = useState(checkMobile.getBackground().backgroundHeight)
   const [hideAll, setHideAll] = useState(isHideAll())
+  const [mobileShowButton, setMobileShowButton] = useState(true)
 
   const getHideAll = (e: boolean) => {
     setHideAll(e)
@@ -26,6 +27,22 @@ const Background = () => {
     img.onload = () => {
       setBackgroundShow(true)
     }
+  }, [])
+
+  useEffect(() => {
+    const originHeight = document.documentElement.clientHeight || document.body.clientHeight;
+    const resizeHandler = () => {
+      const resizeHeight = document.documentElement.clientHeight || document.body.clientHeight;
+      const activeElement = document.activeElement;
+      if (resizeHeight < originHeight) {
+        if (activeElement && (activeElement.tagName === "INPUT" || activeElement.tagName === "TEXTAREA")) {
+          setMobileShowButton(false)
+        }
+      } else {
+        setMobileShowButton(true)
+      }
+    }
+    window.addEventListener('resize', resizeHandler);
   }, [])
 
   return (
@@ -40,7 +57,7 @@ const Background = () => {
       <MainArea hideAll={hideAll}/>
       {hideAll ? null : <One/>}
       {isMobile ?
-        <BottomButtons hideAllFn={(e: boolean) => getHideAll(e)} /> :
+        (mobileShowButton ? <BottomButtons hideAllFn={(e: boolean) => getHideAll(e)} /> : null) :
         <>
           <RightTopButtons hideAllFn={(e: boolean) => getHideAll(e)} />
           <RightBottomButtons />

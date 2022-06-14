@@ -6,6 +6,7 @@ import OneWindow from './OneWindow'
 const One = () => {
   const [oneMain, setOneMain] = useState({})
   const [oneWindowShow, setOneWindowShow] = useState(false)
+  const [mobileShowButton, setMobileShowButton] = useState(true)
 
   const clickBlackBack = () => {
     setOneWindowShow(false)
@@ -17,9 +18,25 @@ const One = () => {
     })
   }, [])
 
+  useEffect(() => {
+    const originHeight = document.documentElement.clientHeight || document.body.clientHeight;
+    const resizeHandler = () => {
+      const resizeHeight = document.documentElement.clientHeight || document.body.clientHeight;
+      const activeElement = document.activeElement;
+      if (resizeHeight < originHeight) {
+        if (activeElement && (activeElement.tagName === "INPUT" || activeElement.tagName === "TEXTAREA")) {
+          setMobileShowButton(false)
+        }
+      } else {
+        setMobileShowButton(true)
+      }
+    }
+    window.addEventListener('resize', resizeHandler);
+  }, [])
+
   return (
     <>
-      <OneButton oneMain={oneMain} oneButtonClick={(e: boolean) => setOneWindowShow(e)} />
+      {mobileShowButton ? <OneButton oneMain={oneMain} oneButtonClick={(e: boolean) => setOneWindowShow(e)} /> : null}
       <OneWindow oneMain={oneMain} oneButtonClick={(e: boolean) => setOneWindowShow(e)} oneWindowShow={oneWindowShow} />
       <div
         className='black_back'
