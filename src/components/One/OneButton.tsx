@@ -1,45 +1,29 @@
-import React, { Component } from 'react'
+import { FC, useEffect, useState } from 'react'
 import '../../scss/One/OneButton.scss'
 import oneButtonStyle from "../../data/OneData/oneButtonData";
+import IOneButtonProps from '../../interface/Props/IOneButtonProps';
 
-export default class OneButton extends Component<any, any> {
-  state = {
-    oneMain: {
-      hitokoto: undefined
-    },
-    oneButtonShow: false,
-    oneWindowShow: false
-  }
-  render() {
-    return (
-      <div
-        className='one_button'
-        style={oneButtonStyle(this.state.oneButtonShow)}
-        onClick={() => this.openOneWindow()}
-      >
-        <span>{this.state.oneMain.hitokoto}</span>
-      </div>
-    )
-  }
-  openOneWindow = () => {
-    this.props.event(true)
-    this.setState({
-      oneWindowShow: true
-    })
-  }
-  static getDerivedStateFromProps(props: any) {
-    let screenWidth: number = window.innerWidth
-    let oneButtonShow: boolean = false
-    if (props.oneMain.hitokoto !== undefined) {
-      oneButtonShow = true
-      if (screenWidth < 768) {
-        oneButtonShow = true
-      }
+const OneButton: FC<IOneButtonProps> = ({
+  oneMain,
+  oneButtonClick,
+}) => {
+  const [oneButtonShow, setOneButtonShow] = useState(false)
+
+  useEffect(() => {
+    if (oneMain.hitokoto !== undefined) {
+      setOneButtonShow(true)
     }
-    return {
-      oneMain: props.oneMain,
-      oneButtonShow: oneButtonShow,
-      oneWindowShow: props.oneWindowShow
-    }
-  }
+  }, [oneMain])
+
+  return (
+    <div
+      className='one_button'
+      style={oneButtonStyle(oneButtonShow)}
+      onClick={() => oneButtonClick(true)}
+    >
+      <span>{oneMain.hitokoto}</span>
+    </div>
+  )
 }
+
+export default OneButton
