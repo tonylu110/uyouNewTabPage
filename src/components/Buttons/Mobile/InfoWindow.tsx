@@ -1,25 +1,23 @@
-import { FC } from 'react'
-import '../../scss/buttons/InfoWindow.scss'
-import IInfoWindowProps from '../../interface/Props/IInfoWindowProps'
-import closeImg from '../../img/close.png'
-import logoImg from '../../logo.svg'
-import coolapkImg from '../../img/coolapk.png'
-import qqImg from '../../img/qq.jpg'
+import { FC } from "react"
+import '../../../scss/buttons/InfoWindowMobile.scss'
+import IInfoWindowProps from "../../../interface/Props/IInfoWindowProps"
+import closeImg from "../../../img/close.png"
+import logoImg from "../../../logo.svg"
+import coolapkImg from "../../../img/coolapk.png"
+import qqImg from "../../../img/qq.jpg"
 
 const InfoWindow: FC<IInfoWindowProps> = ({
   infoWindowShow,
   clickCloseButton
 }) => {
-  const screenWidth = window.innerWidth
   const screenHeight = document.documentElement.clientHeight
 
   return (
-    <div className='info_window' style={{
+    <div className='info_mobile_window' style={{
       transform: infoWindowShow ? 'scale(1, 1)' : '',
-      right: infoWindowShow ? ((screenWidth - 800) / 2) + 'px' : '-445px',
-      bottom: infoWindowShow ? ((screenHeight - 600) / 2) + 'px' : '-300px',
+      top: infoWindowShow ? ((screenHeight - 480) / 2) + 'px' : '-50vh',
     }}>
-      <div className='close_button' onClick={() => clickCloseButton(false)}>
+      <div className='close_button cl_mobile' onClick={() => clickCloseButton(false)}>
         <img src={closeImg} alt='' />
       </div>
       <div className='info_inner'>
@@ -40,7 +38,7 @@ const InfoWindow: FC<IInfoWindowProps> = ({
           <div className="info_text">
             <div>我的 GitHub 地址：</div>
             <a href="https://github.com/tonylu110" target="view_window">点击前往</a>
-            <div className='mine_info'>
+            <div className='mine_info_mobile'>
               <div style={{ marginRight: '20px' }}>
                 <div style={{ marginTop: '10px' }}>我的 酷安 账号：</div>
                 <img src={coolapkImg} alt='' />
