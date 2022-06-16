@@ -1,10 +1,11 @@
-import BottomButtons from "./BottomButtons";
+import BottomButtons from "./Mobile/BottomButtons";
 import RightTopButtons from "./RightTopButtons";
 import RightBottomButtons from "./RightBottomButtons";
 import mobileCheck from "../../util/isMobile";
 import { FC, useEffect, useState } from "react";
 import IButtonsProps from "../../interface/Props/IButtonsProps";
 import getNowMobileState from "../../util/getNowMobileState";
+import TopRightButtons from "./Mobile/TopRightButtons";
 
 const Buttons: FC<IButtonsProps> = ({
   hideAllFn
@@ -43,7 +44,10 @@ const Buttons: FC<IButtonsProps> = ({
   return(
     <>
       {isMobile ?
-        (mobileShowButton ? <BottomButtons hideAllFn={(e: boolean) => getHideAll(e)} /> : null) :
+        <>
+          {mobileShowButton ? <BottomButtons hideAllFn={(e: boolean) => getHideAll(e)} /> : null}
+          <TopRightButtons />
+        </> :
         <>
           <RightTopButtons hideAllFn={(e: boolean) => getHideAll(e)} />
           <RightBottomButtons />

@@ -1,9 +1,9 @@
 import { FC, useState } from 'react';
-import IButtonsProps from "../../interface/Props/IButtonsProps";
-import '../../scss/buttons/BottomButtons.scss'
-import hideImg from '../../img/hide.png';
-import reloadImg from '../../img/reload.png';
-import isHideAll from "../../util/isHideAll";
+import IButtonsProps from "../../../interface/Props/IButtonsProps";
+import '../../../scss/buttons/BottomButtons.scss'
+import hideImg from '../../../img/hide.png';
+import reloadImg from '../../../img/reload.png';
+import isHideAll from "../../../util/isHideAll";
 
 const BottomButtons: FC<IButtonsProps> = ({
   hideAllFn
