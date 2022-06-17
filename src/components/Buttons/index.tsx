@@ -6,6 +6,7 @@ import { FC, useEffect, useState } from "react";
 import IButtonsProps from "../../interface/Props/IButtonsProps";
 import getNowMobileState from "../../util/getNowMobileState";
 import TopRightButtons from "./Mobile/TopRightButtons";
+import LeftTopButtons from "./LeftTopButtons";
 
 const Buttons: FC<IButtonsProps> = ({
   hideAllFn
@@ -53,6 +54,7 @@ const Buttons: FC<IButtonsProps> = ({
           <RightBottomButtons />
         </>
       }
+      <LeftTopButtons />
     </>
   )
 }
