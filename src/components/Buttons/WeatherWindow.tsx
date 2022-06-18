@@ -13,10 +13,10 @@ const WeatherWindow: FC<IWeatherWindowProps> = ({
   showWeatherWindow,
   setCity,
 }) => {
+  const isMobile = useState(new mobileCheck().isMobile)
   const [weatherWindowShowStyle, setWeatherWindowShowStyle] = useState({})
   const [weatherImgShowStyle, setWeatherImgShowStyle] = useState({})
   const [showWeatherInfo, setShowWeatherInfo] = useState(false)
-  const [isMobile, setIsMobile] = useState(new mobileCheck().isMobile)
   const [cityTemp, setCityTemp] = useState('北京')
 
   const citySet = (e: any) => {
@@ -37,12 +37,21 @@ const WeatherWindow: FC<IWeatherWindowProps> = ({
     }, 300)
   }, [])
 
+  const setWeatherWindow = () => {
+    setWeatherImgShowStyle({})
+    setWeatherWindowShowStyle({})
+    setShowWeatherInfo(false)
+    setTimeout(() => {
+      showWeatherWindow(true)
+    }, 300);
+  }
+
   return (
     <>
       {!showWeaherButton ? (
         <div className='top_left_button'>
           <div className='tl_button weather' style={weatherWindowShowStyle}>
-            <img src={weatherImg} style={weatherImgShowStyle} alt="" onClick={() => showWeatherWindow(true)} />
+            <img src={weatherImg} style={weatherImgShowStyle} alt="" onClick={() => setWeatherWindow()} />
             {showWeatherInfo ? (
               <div className="weather_main" style={{
                 margin: isMobile ? '10px 0px 0px 0px' : '',
