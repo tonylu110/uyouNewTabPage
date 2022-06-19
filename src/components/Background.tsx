@@ -12,6 +12,7 @@ const Background = () => {
   const background = checkMobile.getBackground().backgroundImage
   const backgroundHeight = checkMobile.getBackground().backgroundHeight
   const [hideAll, setHideAll] = useState(isHideAll())
+  const [showCalculator, setShowCalculator] = useState(false)
 
   useEffect(() => {
     let img = new Image()
@@ -30,9 +31,9 @@ const Background = () => {
         height: backgroundHeight
       }}
     >
-      <MainArea hideAll={hideAll}/>
-      {hideAll ? null : <One/>}
-      <Buttons hideAllFn={(e: boolean) => setHideAll(e)} />
+      {showCalculator ? null : <MainArea hideAll={hideAll}/>}
+      {hideAll || showCalculator ? null : <One/>}
+      <Buttons calculatorUse={(e: boolean) => setShowCalculator(e)} hideAllFn={(e: boolean) => setHideAll(e)} />
     </div>
   )
 }
