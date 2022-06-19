@@ -44,7 +44,7 @@ const LeftTopButtons = () => {
           setCity(e)
           setTimeout(() => {
             getWeatherInfo()
-          }, 5)
+          }, 1);
         }}
         />
       }

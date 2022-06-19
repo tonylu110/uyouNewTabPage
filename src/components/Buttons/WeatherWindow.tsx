@@ -13,7 +13,7 @@ const WeatherWindow: FC<IWeatherWindowProps> = ({
   showWeatherWindow,
   setCity,
 }) => {
-  const isMobile = useState(new mobileCheck().isMobile)
+  const isMobile = new mobileCheck().isMobile()
   const [weatherWindowShowStyle, setWeatherWindowShowStyle] = useState({})
   const [weatherImgShowStyle, setWeatherImgShowStyle] = useState({})
   const [showWeatherInfo, setShowWeatherInfo] = useState(false)
@@ -59,7 +59,7 @@ const WeatherWindow: FC<IWeatherWindowProps> = ({
               }}>
                 <div className="weather_city">
                   <input type="text" onKeyUp={citySet} placeholder={"当前城市：" + city} />
-                  <div onClick={() => setCity}>确定</div>
+                  <div onClick={() => setCity(cityTemp)}>确定</div>
                 </div>
                 <div className="day_weather" style={{ top: isMobile ? '137px' : '' }}>
                   <div className="today_weather">{weatherInfo.weather[0].weather}</div>
@@ -90,6 +90,11 @@ const WeatherWindow: FC<IWeatherWindowProps> = ({
           </div>
         </div>
       ) : null}
+      <div className='black_back' style={{
+        zIndex: showWeaherButton ? '' : (isMobile ? '10' : '2'),
+        backgroundColor: isMobile ? '#00000050' : ''
+      }} onClick={() => setWeatherWindow()}>
+      </div>
     </>
   )
 }
