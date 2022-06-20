@@ -7,6 +7,7 @@ import IButtonsProps from "../../interface/Props/IButtonsProps";
 import getNowMobileState from "../../util/getNowMobileState";
 import TopRightButtons from "./Mobile/TopRightButtons";
 import LeftTopButtons from "./LeftTopButtons";
+import isHideAll from "../../util/isHideAll";
 
 const Buttons: FC<IButtonsProps> = ({
   hideAllFn,
@@ -17,7 +18,7 @@ const Buttons: FC<IButtonsProps> = ({
   const [isMobile, setIsMobile] = useState(checkMobile.isMobile())
   const [mobileShowButton, setMobileShowButton] = useState(true)
   const [showCalculator, setShowCalculator] = useState(false)
-  const [hideAll, setHideAll] = useState(false)
+  const [hideAll, setHideAll] = useState(isHideAll())
 
   useEffect(() => {
     getNowMobileState((isMobile: boolean) => {
