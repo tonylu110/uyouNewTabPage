@@ -17,6 +17,7 @@ const Buttons: FC<IButtonsProps> = ({
   const [isMobile, setIsMobile] = useState(checkMobile.isMobile())
   const [mobileShowButton, setMobileShowButton] = useState(true)
   const [showCalculator, setShowCalculator] = useState(false)
+  const [hideAll, setHideAll] = useState(false)
 
   useEffect(() => {
     getNowMobileState((isMobile: boolean) => {
@@ -46,6 +47,7 @@ const Buttons: FC<IButtonsProps> = ({
 
   const getHideAll = (e: boolean) => {
     hideAllFn(e)
+    setHideAll(e)
   }
 
   return(
@@ -53,14 +55,14 @@ const Buttons: FC<IButtonsProps> = ({
       {isMobile ?
         <>
           {mobileShowButton ? <BottomButtons calculatorUse={(e: boolean) => setShowCalculator(e)} hideAllFn={(e: boolean) => getHideAll(e)} /> : null}
-          {showCalculator ? null : <TopRightButtons />}
+          {showCalculator || hideAll ? null : <TopRightButtons />}
         </> :
         <>
           <RightTopButtons calculatorUse={(e: boolean) => setShowCalculator(e)} hideAllFn={(e: boolean) => getHideAll(e)} />
-          {showCalculator ? null : <RightBottomButtons />}
+          {showCalculator || hideAll ? null : <RightBottomButtons />}
         </>
       }
-      {showCalculator ? null : <LeftTopButtons />}
+      {showCalculator || hideAll ? null : <LeftTopButtons />}
     </>
   )
 }
