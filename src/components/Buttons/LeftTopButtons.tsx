@@ -13,7 +13,7 @@ const LeftTopButtons = () => {
   const [weatherInfo, setWeatherInfo] = useState({})
 
   const getWeatherInfo = () => {
-    TarRequest('get', 'https://mark.tnyl.xyz/weather/weather/baidu', {
+    TarRequest('get', 'https://bili.tnyl.xyz/api/weather/baidu/', {
       city: city
     }, (res) => {
       setWeatherImgShow(true)

@@ -7,7 +7,7 @@ class mobileCheck {
   private readonly moreSearchWidth: string
   private readonly searchBarWidth: string
   constructor() {
-    this.backgroundImage = 'url(https://dev.iw233.cn/api.php?sort=pc)'
+    this.backgroundImage = 'url(http://mark.tnyl.xyz/api/api.php?sort=pc)'
     this.backgroundHeight = ''
     this.mainAreaTopHeight = ''
     this.moreSearchWidth = ''
@@ -22,7 +22,7 @@ class mobileCheck {
   getBackground = (): IBackground => {
     let screenHeight: number = document.documentElement.clientHeight
     if (this.isMobile()) {
-      this.backgroundImage = 'url(https://dev.iw233.cn/api.php?sort=mp)'
+      this.backgroundImage = 'url(http://mark.tnyl.xyz/api/api.php?sort=mp)'
       this.backgroundHeight = screenHeight + 'px'
     }
     return {
