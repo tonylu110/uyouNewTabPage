@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import '../scss/Background.scss'
 import MainArea from './MainArea'
 import One from './One'
 import isHideAll from "../util/isHideAll";
@@ -10,7 +9,6 @@ const Background = () => {
   const checkMobile = new mobileCheck()
   const [backgroundShow, setBackgroundShow] = useState(false)
   const background = checkMobile.getBackground().backgroundImage
-  const backgroundHeight = checkMobile.getBackground().backgroundHeight
   const [hideAll, setHideAll] = useState(isHideAll())
   const [showCalculator, setShowCalculator] = useState(false)
 
@@ -24,12 +22,7 @@ const Background = () => {
 
   return (
     <div
-      className='background'
-      style={{
-        display: backgroundShow ? '' : 'none',
-        backgroundImage: background,
-        height: backgroundHeight
-      }}
+      className={`flex flex-col items-center justify-center w-screen h-screen bg-no-repeat bg-cover ${backgroundShow ? '' : 'hidden'} ${checkMobile.isMobile() ? 'bg-mp' : 'bg-pc'}`}
     >
       {showCalculator ? null : <MainArea hideAll={hideAll}/>}
       {hideAll || showCalculator ? null : <One/>}

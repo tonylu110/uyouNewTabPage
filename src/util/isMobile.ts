@@ -7,7 +7,7 @@ class mobileCheck {
   private readonly moreSearchWidth: string
   private readonly searchBarWidth: string
   constructor() {
-    this.backgroundImage = 'url(http://mark.tnyl.xyz/api/api.php?sort=pc)'
+    this.backgroundImage = 'url(https://api.dujin.org/bing/1920.php)'
     this.backgroundHeight = ''
     this.mainAreaTopHeight = ''
     this.moreSearchWidth = ''
