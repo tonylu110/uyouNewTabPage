@@ -1,25 +1,19 @@
 import { FC, useEffect, useState } from 'react'
-import '../../scss/MainArea/SearchBar.scss'
 import getSearchEngineImg from '../../data/SearchData/SearchImg'
 import mobileCheck from "../../util/isMobile";
 import getSearchEngine from "../../util/getSearchEngine";
 import ISearchBarProp from '../../interface/Props/ISearchBarProp';
-import getNowMobileState from '../../util/getNowMobileState';
 
 const SearchBar: FC<ISearchBarProp> = ({
   moreSearchShowProp,
   searchEngineProp,
   setMoreSearchIn
 }) => {
-  const [searchBarWidth, setSearchBarWidth] = useState(new mobileCheck().getSearchWidth())
   const [moreSearchShow, setMoreSearchShow] = useState(false)
   const [searchEngine, setSearchEngine] = useState(getSearchEngine())
   const [searchEngineImg, setSearchEngineImg] = useState(getSearchEngineImg(getSearchEngine()))
   const [keyword, setKeyword] = useState('')
-  const [searchBtnShow, setSearchBtnShow] = useState({
-    keywordsRight: 'none',
-    searchBtn: ''
-  })
+  const [searchBtnShow, setSearchBtnShow] = useState(false)
 
   useEffect(() => {
     setMoreSearchShow(moreSearchShowProp)
@@ -27,33 +21,17 @@ const SearchBar: FC<ISearchBarProp> = ({
     setSearchEngineImg(getSearchEngineImg(searchEngineProp))
   }, [moreSearchShowProp, searchEngineProp])
 
-  useEffect(() => {
-    getNowMobileState((isMobile: boolean) => {
-      if (isMobile) {
-        setSearchBarWidth('324px')
-      } else {
-        setSearchBarWidth('')
-      }
-    })
-  }, [])
-
   const clickSearchImg = (moreSearchShow: boolean) => {
     setMoreSearchIn(!moreSearchShow)
     setMoreSearchShow(!moreSearchShow)
   }
 
   const searchKeyword = (e: any) => {
-    if (searchBarWidth === '') {
+    if (!new mobileCheck().isMobile()) {
       if (e.target.value.length > 0) {
-        setSearchBtnShow({
-          keywordsRight: '',
-          searchBtn: '45px'
-        })
+        setSearchBtnShow(true)
       } else {
-        setSearchBtnShow({
-          keywordsRight: 'none',
-          searchBtn: ''
-        })
+        setSearchBtnShow(false)
       }
     }
     setKeyword(e.target.value)
@@ -76,14 +54,23 @@ const SearchBar: FC<ISearchBarProp> = ({
   }
 
   return (
-    <div
-      className='search_bar'
-      style={{ width: searchBarWidth }}
-    >
-      <img alt='' src={searchEngineImg} onClick={() => clickSearchImg(moreSearchShow)} />
-      <input type="text" onKeyUp={searchKeyword} />
-      <div className="keywords_right" style={{ display: searchBtnShow.keywordsRight }}></div>
-      <div className="search_btn" onClick={() => toSearch(searchEngine)} style={{ width: searchBtnShow.searchBtn }}>搜索</div>
+    <div className='hover:bg-white-70 hover:border-white-50 w-[346px] md:w-[590px] h-[52px] bg-white-90 shadow-2xl backdrop-blur rounded-[10px] p-[10px] flex flex-row mb-[20px] border-t-[2px] border-r-[2px] border-solid border-white-70 duration-200 z-[5]'>
+      <img
+        className='p-[5px] h-[30px] w-[30px] mr-[10px] rounded-[50%] bg-[white]'
+        alt='search engine image'
+        src={searchEngineImg}
+        onClick={() => clickSearchImg(moreSearchShow)}
+      />
+      <input
+        className='border-0 bg-transparent rounded-[6px] h-[30px] flex-1 text-[20px] font-bold outline-0'
+        type="text"
+        onKeyUp={searchKeyword}
+      />
+      <div className={`w-[2px] h-[30px] mx-[10px] bg-[#44444450] ${searchBtnShow ? '' : 'hidden'}`}></div>
+      <div
+        className={`${searchBtnShow ? 'w-[45px]' : 'w-[0px]'} text-center text-black font-bold text-[17px] leading-[30px] cursor-pointer select-none overflow-hidden whitespace-nowrap transition duration-300`}
+        onClick={() => toSearch(searchEngine)}
+      >搜索</div>
     </div>
   )
 }

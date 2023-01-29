@@ -1,22 +1,15 @@
 import { FC, useEffect, useState } from 'react'
-import '../../scss/MainArea/MoreSearch.scss'
 import getSearchEngine from '../../data/SearchData/SearchImg'
 import engine from '../../data/SearchData/SearchEngin'
-import mobileCheck from "../../util/isMobile";
 import isHideAll from "../../util/isHideAll";
 import IMoreSearchProps from '../../interface/Props/IMoreSearchProps';
-import getNowMobileState from '../../util/getNowMobileState';
 
 const MoreSearch: FC<IMoreSearchProps> = ({
   moreSearchShowProp,
   setMoreSearchIn
 }) => {
-  const [moreSearchWidth, setMoreSearchWidth] = useState(new mobileCheck().getMoreSearchWidth())
   const [moreSearchShow, setMoreSearchShow] = useState(false)
-  const [mOpacity, setMOpacity] = useState('0')
-  const [mZIndex, setMZIndex] = useState('3')
-  const [moreSearch, setMoreSearch] = useState('')
-  const [moreSearchTop, setMoreSearchTop] = useState(isHideAll() ? '0px' : '')
+  const [moreSearch, setMoreSearch] = useState(false)
 
   const clickSearchImg = (moreSearchShow: boolean, searchEngine: string) => {
     setMoreSearchIn({
@@ -24,50 +17,34 @@ const MoreSearch: FC<IMoreSearchProps> = ({
       searchEngine: searchEngine
     })
     localStorage.setItem('searchEngine', searchEngine)
-    setMOpacity('0')
-    setMZIndex('3')
-    setMoreSearch('')
+    setMoreSearch(false)
     setMoreSearchShow(moreSearchShow)
   }
 
   useEffect(() => {
     if (!moreSearchShowProp) {
-      setMOpacity('0')
-      setMZIndex('3')
-      setMoreSearch('')
+      setMoreSearch(false)
     } else {
-      setMOpacity('')
-      setMZIndex('')
-      setMoreSearch(' more_search_show')
+      setMoreSearch(true)
     }
   }, [moreSearchShowProp])
 
-  useEffect(() => {
-    getNowMobileState((isMobile: boolean) => {
-      if (isMobile) {
-        setMoreSearchWidth('324px')
-      } else {
-        setMoreSearchWidth('')
-      }
-    })
-  }, [])
-
   return (
-    <div
-      className={'more_search' + moreSearch}
-      style={{
-        opacity: mOpacity,
-        zIndex: mZIndex,
-        maxWidth: moreSearchWidth,
-        marginTop: moreSearchTop
-      }}
-    >
-      <div className="search_engines">
+    <div className={`${moreSearch ? 'translate-y-[70px] opacity-100 z-[3]' : 'translate-y-0 opacity-0 -z-1'} ${isHideAll() ? 'mt-0' : '-mt-[200px]'} md:max-w-[500px] max-w-[302px] fixed bg-white-90 backdrop-blur rounded-[20px] shadow-2xl border-t-[2px] border-r-[2px] border-solid border-white-70 z-[4] transition-all duration-300`}>
+      <div className="max-w-[500px] flex flex-row flex-wrap">
         {
           engine.map((item: any, index: number) => {
             return (
-              <div onClick={() => clickSearchImg(moreSearchShow, item.name)} style={item.style} key={index}>
-                <img src={getSearchEngine(item.name)} alt='' style={item.img} />
+              <div
+                className={`rounded-[20px] hover:bg-[#00000010] min-w-[100px] min-h-[100px] ${index === 1 ? 'p-[15px]' : null} ${index === 2 ? 'p-[20px]' : null} p-[25px]`}
+                onClick={() => clickSearchImg(moreSearchShow, item)}
+                key={index}
+              >
+                <img
+                  className={`w-[50px] h-[50px] ${index === 1 ? 'w-[70px] h-[70px]' : null} ${index === 2 ? 'w-[60px] h-[60px]' : null}` }
+                  src={getSearchEngine(item)}
+                  alt={item}
+                />
               </div>
             )
           })

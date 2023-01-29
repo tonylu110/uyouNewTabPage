@@ -1,20 +1,16 @@
-import { FC, useState, useEffect } from 'react'
-import '../../scss/MainArea/MainArea.scss'
+import { FC, useState } from 'react'
 import LinkArea from './LinkArea'
 import MoreSearch from './MoreSearch'
 import SearchBar from './SearchBar'
-import mobileCheck from "../../util/isMobile";
 import getSearchEngine from "../../util/getSearchEngine";
 import IMainAreaProps from '../../interface/Props/IMainAreaProps'
 import IMoreSearchShow from '../../interface/IMoreSearchShow'
-import getNowMobileState from '../../util/getNowMobileState'
 
 const MainArea: FC<IMainAreaProps> = ({
   hideAll
 }) => {
   const [moreSearchShow, setMoreSearchShow] = useState(false)
   const [searchEngine, setSearchEngine] = useState(getSearchEngine())
-  const [mainAreaTopHeight, setMainAreaTopHeight] = useState(new mobileCheck().getMainAreaTopHeight())
 
   const setMoreSearchIn = (show: boolean, engin: string | null) => {
     setMoreSearchShow(show)
@@ -23,20 +19,8 @@ const MainArea: FC<IMainAreaProps> = ({
     }
   }
 
-  useEffect(() => {
-    getNowMobileState((isMobile: boolean) => {
-      var marginTop
-      if (isMobile) {
-        marginTop = '-200px'
-      } else {
-        marginTop = ''
-      }
-      setMainAreaTopHeight(marginTop)
-    })
-  }, [])
-
   return (
-    <div className='main_area' style={{ marginTop: mainAreaTopHeight }}>
+    <div className='flex items-center justify-center flex-col mt-[-200px] md:mt-0'>
       <SearchBar
         moreSearchShowProp={moreSearchShow}
         searchEngineProp={searchEngine}
