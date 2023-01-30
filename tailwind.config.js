@@ -4,16 +4,12 @@ module.exports = {
   content: [],
   theme: {
     extend: {
-      spacing: {
-        'vw': '1vw',
-        'vh': '1vh',
-      },
       zIndex: {
         '-1': '-1',
       },
       backgroundImage: {
         'pc': "url('https://api.dujin.org/bing/1920.php')",
-        'mp': "url('/img/footer-texture.png')",
+        'mp': "url('https://api.dujin.org/bing/m.php')",
       },
       colors: {
         'bb-show': '#00000050',

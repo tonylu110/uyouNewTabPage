@@ -39,7 +39,7 @@ const One = () => {
       {mobileShowButton ? <OneButton oneMain={oneMain} oneButtonClick={(e: boolean) => setOneWindowShow(e)} /> : null}
       <OneWindow oneMain={oneMain} oneButtonClick={(e: boolean) => setOneWindowShow(e)} oneWindowShow={oneWindowShow} />
       <div
-        className={`w-screen h-screen fixed ${oneWindowShow ? 'z-20 bg-bb-show' : '-z-1'} transition`}
+        className={`black-back ${oneWindowShow ? 'z-20 bg-bb-show' : ''}`}
         onClick={() => clickBlackBack()}
       ></div>
     </>
