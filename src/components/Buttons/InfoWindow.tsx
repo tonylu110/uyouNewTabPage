@@ -10,7 +10,7 @@ const InfoWindow: FC<IInfoWindowProps> = ({
   clickCloseButton
 }) => {
   return (
-    <div className={`${infoWindowShow ? 'scale-100 right-[calc(50%-400px)] bottom-[calc(50%-300px)]' : 'scale-0 -right-[360px] -bottom-[260px]'} fixed z-[200] w-[800px] h-[600px] bg-white-90 shadow-2xl backdrop-blur rounded-[20px] p-[50px] flex flex-col border-t-[2px] border-r-[2px] border-solid border-white-70 transition-all duration-500 text-black`}>
+    <div className={`${infoWindowShow ? 'scale-100 :right-[calc(50%-400px)] md:bottom-[calc(50%-300px)] top-[calc(50%-300px)]' : 'scale-0 md:-right-[360px] md:-bottom-[260px] -top-[800px]'} fixed z-[200] w-[350px] h-[480px] md:w-[800px] md:h-[600px] bg-white-90 shadow-2xl backdrop-blur rounded-[20px] p-[25px] md:p-[50px] flex flex-col border-t-[2px] border-r-[2px] border-solid border-white-70 transition-all duration-500 text-black`}>
       <div
         className='close-btn'
         onClick={() => clickCloseButton(false)}
@@ -44,15 +44,15 @@ const InfoWindow: FC<IInfoWindowProps> = ({
               className='block w-[120px] p-[10px] rounded-[10px] bg-[#0078d4] text-[white] text-center mt-[10px] no-underline'
               href="https://github.com/tonylu110" target="view_window"
             >点击前往</a>
-            <div className='flex flex-row mt-[10px]'>
+            <div className='flex md:flex-row flex-col mt-[10px]'>
               <div className='mr-[20px]'>
                 <div className='mr-[10px]'>我的 酷安 账号：</div>
-                <img className='mt-[5px] rounded-[10px] h-[300px]' src={coolapkImg} alt='' />
+                <img className='mt-[5px] rounded-[10px] md:h-[300px] w-[100%]' src={coolapkImg} alt='' />
                 <a className='block w-[120px] p-[10px] rounded-[10px] bg-[#0078d4] text-[white] text-center mt-[10px] no-underline' href="http://www.coolapk.com/u/1126752" target="view_window">点击前往</a>
               </div>
               <div>
                 <div>欢迎加群讨论：</div>
-                <img className='mt-[5px] rounded-[10px] h-[300px]' src={qqImg} alt='' />
+                <img className='mt-[5px] rounded-[10px] md:h-[300px] w-[100%]' src={qqImg} alt='' />
                 <a className='block w-[120px] p-[10px] rounded-[10px] bg-[#0078d4] text-[white] text-center mt-[10px] no-underline' href="https://jq.qq.com/?_wv=1027&amp;k=B8k42CI9" target="view_window">点击前往</a>
               </div>
             </div>

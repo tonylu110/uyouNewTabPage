@@ -36,7 +36,7 @@ const MoreSearch: FC<IMoreSearchProps> = ({
           engine.map((item: any, index: number) => {
             return (
               <div
-                className={`rounded-[20px] hover:bg-[#00000010] min-w-[100px] min-h-[100px] ${index === 1 ? 'p-[15px]' : null} ${index === 2 ? 'p-[20px]' : null} p-[25px]`}
+                className={`rounded-[20px] hover:bg-[#00000010] min-w-[100px] min-h-[100px] max-w-[100px] max-h-[100px] ${index === 1 ? 'p-[15px]' : 'p-[25px]'} ${index === 2 ? 'p-[20px]' : null}`}
                 onClick={() => clickSearchImg(moreSearchShow, item)}
                 key={index}
               >
