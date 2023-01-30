@@ -19,6 +19,9 @@
     @apply w-[200vw] h-[200vh] bg-transparent fixed -z-1 transition-all duration-300
   }
   .close-btn {
-    @apply active:bg-white-50 p-[6px] w-[24px] h-[24px] bg-white-90 absolute right-[20px] md:right-[25px] top-[20px] md:top-[25px] rounded-[50%] shadow-2xl flex justify-center items-center cursor-pointer duration-300
+    @apply active:bg-white/40 p-[6px] w-[24px] h-[24px] bg-white/60 absolute right-[20px] md:right-[25px] top-[20px] md:top-[25px] rounded-[50%] shadow-2xl flex justify-center items-center cursor-pointer duration-300
+  }
+  .btn {
+    @apply active:bg-white/50 w-[50px] h-[50px] p-[10px] bg-white/60 shadow-2xl backdrop-blur cursor-pointer rounded-[50px] border-[2px] border-white/40 border-solid
   }
 }

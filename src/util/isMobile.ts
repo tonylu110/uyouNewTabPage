@@ -22,7 +22,6 @@ class mobileCheck {
   getBackground = (): IBackground => {
     let screenHeight: number = document.documentElement.clientHeight
     if (this.isMobile()) {
-      this.backgroundImage = 'url(http://mark.tnyl.xyz/api/api.php?sort=mp)'
       this.backgroundHeight = screenHeight + 'px'
     }
     return {

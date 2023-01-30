@@ -30,7 +30,7 @@ const MoreSearch: FC<IMoreSearchProps> = ({
   }, [moreSearchShowProp])
 
   return (
-    <div className={`${moreSearch ? 'translate-y-[70px] opacity-100 z-[3]' : 'translate-y-0 opacity-0 -z-1'} ${isHideAll() ? 'mt-0' : '-mt-[200px]'} md:max-w-[500px] max-w-[302px] fixed bg-white-90 backdrop-blur rounded-[20px] shadow-2xl border-t-[2px] border-r-[2px] border-solid border-white-70 z-[4] transition-all duration-300`}>
+    <div className={`${moreSearch ? 'translate-y-[70px] opacity-100 z-[3]' : 'translate-y-0 opacity-0 -z-1'} ${isHideAll() ? 'mt-0' : '-mt-[200px]'} md:max-w-[500px] max-w-[302px] fixed bg-white/60 backdrop-blur rounded-[20px] shadow-2xl border-t-[2px] border-r-[2px] border-solid border-white/50 z-[4] transition-all duration-300`}>
       <div className="max-w-[500px] flex flex-row flex-wrap">
         {
           engine.map((item: any, index: number) => {

@@ -54,7 +54,7 @@ const SearchBar: FC<ISearchBarProp> = ({
   }
 
   return (
-    <div className='hover:bg-white-70 hover:border-white-50 w-[346px] md:w-[590px] h-[52px] bg-white-90 shadow-2xl backdrop-blur rounded-[10px] p-[10px] flex flex-row mb-[20px] border-t-[2px] border-r-[2px] border-solid border-white-70 duration-200 z-[5]'>
+    <div className='hover:bg-white/50 hover:border-white/40 w-[346px] md:w-[590px] h-[52px] bg-white/60 shadow-2xl backdrop-blur rounded-[10px] p-[10px] flex flex-row mb-[20px] border-t-[2px] border-r-[2px] border-solid border-white/50 duration-200 z-[5]'>
       <img
         className='p-[5px] h-[30px] w-[30px] mr-[10px] rounded-[50%] bg-[white]'
         alt='search engine image'

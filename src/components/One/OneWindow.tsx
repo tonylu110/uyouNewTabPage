@@ -8,7 +8,7 @@ const OneWindow: FC<IOneWindowProps> = ({
   oneWindowShow
 }) => {
   return (
-    <div className={`w-[310px] h-[440px] p-[40px] bottom-[-50vh] ${oneWindowShow ? 'bottom-[calc(50%-152px)]' : 'md:bottom-[-170px]'} ${oneWindowShow ? 'scale-100' : 'scale-0'} fixed z-[21] md:w-[600px] md:h-[350px] bg-white-90 shadow-2xl backdrop-blur rounded-[20px] flex flex-row border-t-[2px] border-r-[2px] border-solid border-white-70 transform duration-500`}>
+    <div className={`w-[350px] h-[480px] p-[40px] bottom-[-50vh] ${oneWindowShow ? 'bottom-[calc(50%-240px)] md:bottom-[calc(50%-200px)]' : 'md:bottom-[-170px]'} ${oneWindowShow ? 'scale-100' : 'scale-0'} fixed z-[21] md:w-[650px] md:h-[400px] bg-white/60 shadow-2xl backdrop-blur rounded-[20px] flex flex-row border-t-[2px] border-r-[2px] border-solid border-white/50 transform duration-500`}>
       <div className='close-btn'
         onClick={() => oneButtonClick(false)}
       >

@@ -7,9 +7,9 @@ const RightBottomButtons = () => {
 
   return (
     <>
-      <div className='fixed right-0 z-10 bottom-0'>
+      <div className='fixed right-0 z-10 bottom-0 mb-[20px] mr-[20px]'>
         <div
-          className='active:bg-white-70 w-[50px] h-[50px] p-[10px] mb-[20px] mr-[20px] bg-white-90 shadow-2xl backdrop-blur cursor-pointer rounded-[50%]'
+          className='btn'
           onClick={() => setIsWindowShow(true)}
         >
           <img src={infoImg} alt="" />

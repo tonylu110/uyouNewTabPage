@@ -25,7 +25,7 @@ const LinkArea = () => {
           return (
             isMobile && (index > 4 && index < 9) ? null : (
               <div onClick={() => openLink(links[index])} key={index}>
-                <div className='hover:bg-white-70 border-white-50 cursor-pointer w-[102px] h-[102px] bg-white-90 backdrop-blur shadow-2xl m-[10px] rounded-[10px] border-t-[2px] border-r-[2px] border-solid border-white-70 flex items-center justify-center p-[25px]'>
+                <div className='hover:bg-white/50 border-white/40 cursor-pointer w-[102px] h-[102px] bg-white/60 backdrop-blur shadow-2xl m-[10px] rounded-[10px] border-t-[2px] border-r-[2px] border-solid flex items-center justify-center p-[25px]'>
                   <img className='w-[50px] h-[50px]' src={item} alt="" />
                 </div>
               </div>

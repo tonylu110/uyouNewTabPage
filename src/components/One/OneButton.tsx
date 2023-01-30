@@ -15,7 +15,7 @@ const OneButton: FC<IOneButtonProps> = ({
 
   return (
     <div
-      className={`${oneButtonShow ? 'mb-[20vh]' : '-mb-[200px]'} max-w-[280px] fixed bottom-0 bg-white-90 rounded-[50px] shadow-2xl backdrop-blur ${oneButtonShow ? 'md:mb-[20px]' : '-mb-[200px]'} cursor-pointer h-[50px] leading-[50px] text-center px-[20px] md:max-w-[500px] overflow-hidden overflow-ellipsis text-black active:bg-white-70`}
+      className={`${oneButtonShow ? 'bottom-[20vh] md:bottom-[20px]' : '-bottom-[200px]'} w-auto fixed max-w-[280px] text-center px-[20px] md:max-w-[500px] overflow-hidden overflow-ellipsis text-black btn`}
       onClick={() => oneButtonClick(true)}
     >
       <span className='no-underline font-bold text-[13.5px] overflow-hidden overflow-ellipsis whitespace-nowrap select-none'>{oneMain.hitokoto}</span>

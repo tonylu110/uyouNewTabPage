@@ -1,7 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  purge: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
-  content: [],
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
   theme: {
     extend: {
       zIndex: {
@@ -12,12 +14,7 @@ module.exports = {
         'mp': "url('https://api.dujin.org/bing/m.php')",
       },
       colors: {
-        'bb-show': '#00000050',
-        'white': {
-          '90': '#ffffff90',
-          '70': '#ffffff70',
-          '50': '#ffffff50'
-        }
+        'bb-show': '#00000050'
       }
     }
   },

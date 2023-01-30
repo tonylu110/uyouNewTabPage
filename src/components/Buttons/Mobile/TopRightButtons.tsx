@@ -7,9 +7,9 @@ const TopRightButtons = () => {
 
   return (
     <>
-      <div className='fixed right-0 z-10 top-0'>
+      <div className='fixed right-0 z-10 top-0 mt-[20px] mr-[20px]'>
         <div
-          className='active:bg-white-70 w-[50px] h-[50px] p-[10px] mt-[20px] mr-[20px] bg-white-90 shadow-2xl backdrop-blur cursor-pointer rounded-[50%]'
+          className='active:bg-white/50 w-[50px] h-[50px] p-[10px] bg-white/60 shadow-2xl backdrop-blur cursor-pointer rounded-[50%]'
           onClick={() => setIsWindowShow(true)}
         >
           <img src={infoImg} alt="" />
